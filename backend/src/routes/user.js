@@ -1,5 +1,4 @@
 import { Router } from 'express'
-import eventEmitter from '../subscribers/userListeners'
 
 const userRoutes = Router()
 
