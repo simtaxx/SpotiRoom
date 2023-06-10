@@ -9,7 +9,7 @@ export class Authentication {
     try {
       const authentication = await this.spotifyAuthentication.fetchAccessToken()
 
-      console.log(authentication)
+      return authentication
     } catch (error) {
       console.error(error)
       return error

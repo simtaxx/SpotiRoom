@@ -7,7 +7,6 @@ authRoutes.get('/', async (req, res) => {
   const authentication = new Authentication()
   const musicProvideAuthentication = await authentication.fetchMusicProviderAuthentication()
 
-  console.log(musicProvideAuthentication)
   res.send(musicProvideAuthentication)
 })
 
