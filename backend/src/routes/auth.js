@@ -1,13 +1,17 @@
 import { Router } from 'express'
-import { Authentication } from '../domain/services/authentication'
+import { getAccessToken, spotifyApi } from '../config/http'
 
 const authRoutes = Router()
 
 authRoutes.get('/', async (req, res) => {
-  const authentication = new Authentication()
-  const musicProvideAuthentication = await authentication.fetchMusicProviderAuthentication()
+  try {
+    const accessToken = await getAccessToken()
+    const { data } = await spotifyApi(accessToken).get('/albums/2LOyzVRA6BJgfgGxQj21O1?si=tPXAErPgRcC25aNl51JB-Q')
 
-  res.send(musicProvideAuthentication)
+    res.send({ data })
+  } catch (error) {
+    res.send(error)
+  }
 })
 
 export default authRoutes

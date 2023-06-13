@@ -1,6 +1,7 @@
-import { spotifyAccessToken } from '../../config/http'
+import { spotifyAccessToken } from '../../../config/http'
+import IMusicProviderAuthentication from '../../../domain/interfaces/IMusicProviderAuthentication'
 
-export class SpotifyAuthentication {
+export class SpotifyAuthentication extends IMusicProviderAuthentication {
   fetchAccessToken = async () => {
     try {
       const { data } = await spotifyAccessToken.post('/token', {
@@ -11,7 +12,6 @@ export class SpotifyAuthentication {
 
       return data
     } catch (error) {
-      console.log(error)
       return error
     }
   }
