@@ -21,5 +21,5 @@ export const getAccessToken = async () => {
   const authentication = new SpotifyAuthentication
   const { access_token } = await authentication.fetchAccessToken()
 
-  return access_token
+  process.env.ACCESS_TOKEN = access_token
 }
