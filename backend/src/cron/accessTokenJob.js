@@ -1,10 +1,10 @@
 import cron from 'node-cron'
-import { getAccessToken } from '../config/http'
+import { getAppAccessToken } from '../config/http'
 
 export class accesTokenGeneratorJob {
   constructor(expression) {
     this.job = cron.schedule(expression, async () => {
-      await getAccessToken()
+      await getAppAccessToken()
     },
     {
       scheduled: true,

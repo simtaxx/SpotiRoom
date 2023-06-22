@@ -17,9 +17,9 @@ export const spotifyApi = (token) => axios.create({
     }
 })
 
-export const getAccessToken = async () => {
+export const getAppAccessToken = async () => {
   const authentication = new SpotifyAuthentication
-  const { access_token } = await authentication.fetchAccessToken()
+  const { access_token } = await authentication.fetchAppAccessToken()
 
   process.env.ACCESS_TOKEN = access_token
 }

@@ -1,7 +1,5 @@
-import authRoutes from './auth'
-import userRoutes from './user'
+import musicProviderAuthRoutes from './musicProviderAuth'
 
 export default {
-  auth: authRoutes,
-  user: userRoutes
+  musicProviderAuth: musicProviderAuthRoutes
 }
