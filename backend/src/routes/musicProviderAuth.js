@@ -1,5 +1,4 @@
 import { Router } from 'express'
-import { spotifyApi } from '../config/http'
 import { SpotifyAuthentication } from '../adapters/externalServices/spotify/authentication'
 
 const musicProviderAuth = Router()
@@ -7,9 +6,9 @@ const musicProviderAuth = Router()
 musicProviderAuth.get('/', async (req, res) => {
   try {
     const spotifyAuthentication = new SpotifyAuthentication()
-    const { redirectionURL, codeVerifier } = await spotifyAuthentication.generateAuthenticationURL()
+    const { redirectionURL } = await spotifyAuthentication.generateAuthenticationURL()
 
-    res.send({ redirectionURL, codeVerifier })
+    res.send({ redirectionURL })
   } catch (error) {
     res.send(error)
   }
@@ -17,11 +16,11 @@ musicProviderAuth.get('/', async (req, res) => {
 
 musicProviderAuth.post('/', async (req, res) => {
   try {
-    const { code, codeVerifier } = req.body
+    const { code } = req.body
     const spotifyAuthentication = new SpotifyAuthentication()
-    const accessToken = await spotifyAuthentication.generateAccessToken(code, codeVerifier)
+    const authentication = await spotifyAuthentication.generateAccessToken(code)
 
-    res.send(accessToken)
+    res.send(authentication)
   } catch (error) {
     res.send(error)
   }

@@ -1,5 +1,7 @@
 import musicProviderAuthRoutes from './musicProviderAuth'
+import musicProviderRefreshAuthRoutes from './musicProviderRefreshAuth'
 
 export default {
-  musicProviderAuth: musicProviderAuthRoutes
+  musicProviderAuth: musicProviderAuthRoutes,
+  musicProviderRefreshAuth: musicProviderRefreshAuthRoutes
 }

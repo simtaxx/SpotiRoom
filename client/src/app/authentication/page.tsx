@@ -10,8 +10,7 @@ const authentication = () => {
   }, [])
 
   const authenticate = async () => {
-    const { redirectionURL, codeVerifier } = await getAuthorization()
-    window.localStorage.setItem('codeVerifier', codeVerifier)
+    const { redirectionURL } = await getAuthorization()
     window.location = redirectionURL
   }
 

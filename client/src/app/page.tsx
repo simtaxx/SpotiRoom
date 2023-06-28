@@ -1,27 +1,31 @@
 'use client'
 
+import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
-import { useRouter, useSearchParams } from "next/navigation";
-import { getAccessToken } from '@/api/authentication'
+import { getAccessToken, getRefreshedAccessToken } from '@/api/authentication'
+
 import styles from './styles.module.scss'
 
 const Home = () => {
-  const router = useRouter()
-  const urlParams = new URLSearchParams(window.location.search);
-  const authCode = urlParams.get('code') || ''
+  const searchParams = useSearchParams()
+  const code: string|null = searchParams.get('code')
 
   useEffect(() => {
-    if (authCode) {
-      fetchAccessToken()
-    }
-  }, [])
+    fetchAccessToken()
+  })
 
   const fetchAccessToken = async () => {
-    const codeVerifier = window.localStorage.getItem('codeVerifier') || ''
-    const accessToken = await getAccessToken(authCode, codeVerifier)
-    window.localStorage.setItem('accessToken', accessToken)
-    router.push('/')
+    if (!code) return
+    const { access_token, refresh_token, token_type } = await getAccessToken(code)
+    console.log(access_token)
+    localStorage.setItem('authAccessToken', `${token_type} ${access_token}`)
+    localStorage.setItem('authRefreshToken', refresh_token)
   }
+
+  /* const fetchRefreshAccessToken = async () => {
+    const { access_token, token_type } = await getRefreshedAccessToken()
+    localStorage.setItem('authAccessToken', `${token_type} ${access_token}`)
+  } */
 
   return (
     <main>
