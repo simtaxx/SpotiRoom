@@ -1,8 +1,6 @@
 import { spotifyAccessToken } from '../../../config/http'
-import base64encode from '../../../domain/utils/base64encode'
 import generateRandomString from '../../../domain/utils/generateRandomString'
 import IMusicProviderAuthentication from '../interfaces/IMusicProviderAuthentication'
-import crypto from 'crypto'
 
 export class SpotifyAuthentication extends IMusicProviderAuthentication {
   fetchAppAccessToken = async () => {
@@ -55,7 +53,7 @@ export class SpotifyAuthentication extends IMusicProviderAuthentication {
     }
   }
 
-  generateRefreshAccessToken = async (refresh_token) => {
+  generateRefreshedAccessToken = async (refresh_token) => {
     try {
       const body = new URLSearchParams({
         grant_type: 'refresh_token',

@@ -7,7 +7,7 @@ musicProviderRefreshAuth.post('/', async (req, res) => {
   try {
     const { refreshToken } = req.body
     const spotifyAuthentication = new SpotifyAuthentication()
-    const refreshAuthentication = await spotifyAuthentication.generateRefreshAccessToken(refreshToken)
+    const refreshAuthentication = await spotifyAuthentication.generateRefreshedAccessToken(refreshToken)
 
     res.send(refreshAuthentication)
   } catch (error) {

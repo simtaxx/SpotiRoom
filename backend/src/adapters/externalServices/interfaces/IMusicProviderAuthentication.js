@@ -11,7 +11,7 @@ class IMusicProviderAuthentication {
     throw new Error('generateAccessToken must be implemented')
   }
 
-  generateRefreshAccessToken = () => {
+  generateRefreshedAccessToken = () => {
     throw new Error('generateRefreshAccessToken must be implemented')
   }
 }
