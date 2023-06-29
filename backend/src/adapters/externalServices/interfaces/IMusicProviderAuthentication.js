@@ -14,6 +14,10 @@ class IMusicProviderAuthentication {
   generateRefreshedAccessToken = () => {
     throw new Error('generateRefreshAccessToken must be implemented')
   }
+
+  fetchUser = () => {
+    throw new Error('fetchUser must be implemented')
+  }
 }
 
 export default IMusicProviderAuthentication
