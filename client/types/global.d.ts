@@ -1,3 +1,9 @@
 export {}
 
-declare global {}
+declare global {
+    interface IUserState {
+        accessToken: string|null,
+        refreshAccessToken: string|null,
+        user: any
+    }
+}

@@ -1,4 +1,4 @@
-import { spotifyAccessToken } from '../../../config/http'
+import { spotifyAccessToken, spotifyApi } from '../../../config/http'
 import generateRandomString from '../../../domain/utils/generateRandomString'
 import IMusicProviderAuthentication from '../interfaces/IMusicProviderAuthentication'
 
@@ -53,11 +53,11 @@ export class SpotifyAuthentication extends IMusicProviderAuthentication {
     }
   }
 
-  generateRefreshedAccessToken = async (refresh_token) => {
+  generateRefreshedAccessToken = async (refreshToken) => {
     try {
       const body = new URLSearchParams({
         grant_type: 'refresh_token',
-        refresh_token
+        refresh_token: refreshToken,
       });
       const headers = {
         Authorization: `Basic ${(new Buffer.from(`${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`).toString('base64'))}`
@@ -65,6 +65,23 @@ export class SpotifyAuthentication extends IMusicProviderAuthentication {
       const { data } = await spotifyAccessToken.post('/token', body, { headers })
 
       return data
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  fetchUser = async (accessToken) => {
+    try {
+      const { data } = await spotifyApi(accessToken).get('/me')
+      const { id, display_name, images, product, type } = data
+
+      return {
+        id,
+        name: display_name,
+        picture: images[0].url,
+        product,
+        type
+      }
     } catch (error) {
       console.error(error)
     }
