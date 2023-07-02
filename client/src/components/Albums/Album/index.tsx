@@ -12,6 +12,7 @@ export const Album = ({ album }: IProps) => {
     <div className={styles.album}>
       <Image
         className={styles['album__main-picture']}
+        priority
         src={album.images[0].url}
         alt={album.name}
         width='200'
