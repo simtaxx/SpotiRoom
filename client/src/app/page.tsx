@@ -19,7 +19,6 @@ const Home = () => {
 
   return (
     <main className={styles.home}>
-      <h1>SpotiRoom</h1>
       <Albums />
     </main>
   )

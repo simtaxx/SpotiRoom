@@ -1,0 +1,36 @@
+@import '@/assets/styles/variables.scss';
+
+.album {
+    position: relative;
+    background-color: $light-purple;
+    padding: 20px;
+    border-radius: $main-radius;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+    transition: 0.4s;
+
+    &:hover {
+        box-shadow: 7px 7px 15px 0px rgb(11, 11, 11);
+
+        .album__main-picture {
+            filter: grayscale(60%) sepia(60%) blur(1.5px) contrast(100%);
+        }
+    }
+
+    &__main-picture {
+      margin-bottom: 15px;
+      transition: 0.4s;
+    }
+
+    &__name {
+        margin-bottom: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+
+    &__artist {
+        font-size: 13px;
+    }
+}
