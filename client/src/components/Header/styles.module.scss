@@ -1,9 +1,46 @@
+@import '@/assets/styles/variables.scss';
+
 .header {
     height: 60px;
     width: calc(100% - 40px);
-    background-color: rgb(45, 8, 62);
+    background-color: $dark-purple;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
+
+    &__title {
+        font-size: 24px;
+        font-weight: bold;
+        font-family: 'Roboto', sans-serif;
+        color: white;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    &__profile-container {
+        display: flex;
+        align-items: center;
+    }
+
+    &__authButton {
+        padding: 3px 16px;
+        font-size: 16px;
+        font-weight: bold;
+        font-family: 'Roboto', sans-serif;
+        color: $dark-purple;
+        cursor: pointer;
+        border-radius: 6px;
+        border: none;
+        transition: .3s;
+
+        &:hover {
+            box-shadow: rgba(0, 0, 0, 0.55) 4px 5px 8px;
+        }
+    }
+
+    img {
+        border-radius: 100px;
+        margin-left: 20px;
+    }
 }

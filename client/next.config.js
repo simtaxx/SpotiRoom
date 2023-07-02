@@ -1,7 +1,13 @@
 /** @type {import('next').NextConfig} */
+console.log()
 const nextConfig = {
     images: {
-        domains: ['scontent-cdg4-3.xx.fbcdn.net']
+        remotePatterns: [
+          {
+            protocol: "https",
+            hostname: "**"
+          },
+        ]
     }
 }
 

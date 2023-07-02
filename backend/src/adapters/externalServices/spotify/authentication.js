@@ -20,7 +20,7 @@ export class SpotifyAuthentication extends IMusicProviderAuthentication {
   generateAuthenticationURL = async () => {
     try {
       const state = generateRandomString(16)
-      const scope = 'user-read-private user-read-email'
+      const scope = 'user-read-private user-read-email playlist-modify-public user-library-read'
       const args = new URLSearchParams({
         response_type: 'code',
         client_id: process.env.CLIENT_ID,
