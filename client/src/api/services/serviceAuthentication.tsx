@@ -10,6 +10,11 @@ export const authenticate = async () => {
     window.location = redirectionURL
 }
 
+export const logout = () => {
+    localStorage.clear()
+    window.location.href = '/'
+}
+
 export const fetchUser = async (code: string) => {
     const { access_token, refresh_token, token_type } = await getAccessToken(code)
     const user = await getUserInformations(access_token)

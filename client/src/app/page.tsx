@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import { fetchUser } from '@/api/services/serviceAuthentication'
 
 import styles from './styles.module.scss'
+import { Albums } from '@/components/Albums'
 
 const Home = () => {
   const searchParams = useSearchParams()
@@ -17,8 +18,9 @@ const Home = () => {
   })
 
   return (
-    <main>
+    <main className={styles.home}>
       <h1>SpotiRoom</h1>
+      <Albums />
     </main>
   )
 }

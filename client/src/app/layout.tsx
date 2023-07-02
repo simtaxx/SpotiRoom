@@ -1,11 +1,10 @@
 'use client'
 
 import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 import { Provider } from 'react-redux'
 import store from '@/store/store'
 
-import '../assets/styles/reset.scss'
+import '../assets/styles/index.scss'
 
 export const metadata = {
   title: 'SpotiRoom',
@@ -23,7 +22,6 @@ const RootLayout = ({ children }: IRootLayoutProps) => {
         <body>
           <Header />
           {children}
-          <Footer />
         </body>
       </Provider>
     </html>

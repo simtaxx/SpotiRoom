@@ -1,0 +1,16 @@
+@import '@/assets/styles/variables.scss';
+
+.albums {
+
+    &__list {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+    }
+
+    &__album {
+        width: 200px;
+        height: auto;
+    }
+}
