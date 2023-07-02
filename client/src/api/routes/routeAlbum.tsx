@@ -1,3 +1,4 @@
+import { manageErrors } from '../utils/errors'
 import { http } from '../utils/http'
 
 export const getAlbums = async (accessToken: string): Promise<any> => {
@@ -9,6 +10,6 @@ export const getAlbums = async (accessToken: string): Promise<any> => {
 
     return data
   } catch (error: any) {
-    return error
+    manageErrors(error.response.status)
   }
 }
