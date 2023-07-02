@@ -10,7 +10,8 @@ musicProviderAuth.get('/', async (req, res) => {
 
     res.send({ redirectionURL })
   } catch (error) {
-    res.send(error)
+    const { status, message } = error.response.data.error
+    res.status(status).send(message)
   }
 })
 
@@ -22,7 +23,8 @@ musicProviderAuth.post('/', async (req, res) => {
 
     res.send(authentication)
   } catch (error) {
-    res.send(error)
+    const { status, message } = error.response.data.error
+    res.status(status).send(message)
   }
 })
 

@@ -11,7 +11,8 @@ musicProviderUserInfo.post('/', async (req, res) => {
 
     res.send(user)
   } catch (error) {
-    res.send(error)
+    const { status, message } = error.response.data.error
+    res.status(status).send(message)
   }
 })
 

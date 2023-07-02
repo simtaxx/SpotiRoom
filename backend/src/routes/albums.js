@@ -11,7 +11,8 @@ albums.get('/', async (req, res) => {
 
     res.send(items)
   } catch (error) {
-    res.send(error)
+    const { status, message } = error.response.data.error
+    res.status(status).send(message)
   }
 })
 
