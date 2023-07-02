@@ -1,7 +1,8 @@
 @import '@/assets/styles/variables.scss';
 
 .home {
-    background-color: $light-purple;
-    width: 100%;
-    height: calc(100vh - 60px);
+    background-color: $dark-purple;
+    width: calc(100% - 80px);
+    height: calc(100vh - 140px);
+    padding: 40px 40px;
 }

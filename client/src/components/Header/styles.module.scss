@@ -3,7 +3,7 @@
 .header {
     height: 60px;
     width: calc(100% - 40px);
-    background-color: $dark-purple;
+    background-color: $light-purple;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28,9 +28,9 @@
         font-size: 16px;
         font-weight: bold;
         font-family: 'Roboto', sans-serif;
-        color: $dark-purple;
+        color: $light-purple;
         cursor: pointer;
-        border-radius: 6px;
+        border-radius: $main-radius;
         border: none;
         transition: .3s;
 
