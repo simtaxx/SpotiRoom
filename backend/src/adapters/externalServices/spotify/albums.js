@@ -1,5 +1,5 @@
 import { spotifyApi } from '../../../config/http'
-import IAlbums from '../interfaces/IAlbums'
+import IAlbums from '../contracts/IAlbums'
 
 export class Albums extends IAlbums {
   fetchAlbums = async (accessToken) => {

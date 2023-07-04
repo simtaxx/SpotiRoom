@@ -1,6 +1,6 @@
 import { spotifyAccessToken, spotifyApi } from '../../../config/http'
 import generateRandomString from '../../../domain/utils/generateRandomString'
-import IMusicProviderAuthentication from '../interfaces/IMusicProviderAuthentication'
+import IMusicProviderAuthentication from '../contracts/IMusicProviderAuthentication'
 
 export class SpotifyAuthentication extends IMusicProviderAuthentication {
   fetchAppAccessToken = async () => {
