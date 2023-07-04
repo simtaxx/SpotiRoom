@@ -31,7 +31,7 @@ export class SpotifyAuthentication extends IMusicProviderAuthentication {
 
       return { redirectionURL: `https://accounts.spotify.com/authorize?${args}` }
     } catch (error) {
-      console.error(error)
+      throw error
     }
   }
 
@@ -49,7 +49,7 @@ export class SpotifyAuthentication extends IMusicProviderAuthentication {
 
       return data
     } catch (error) {
-      console.error(error)
+      throw error
     }
   }
 
@@ -66,7 +66,7 @@ export class SpotifyAuthentication extends IMusicProviderAuthentication {
 
       return data
     } catch (error) {
-      console.error(error)
+      throw error
     }
   }
 
@@ -83,7 +83,7 @@ export class SpotifyAuthentication extends IMusicProviderAuthentication {
         type
       }
     } catch (error) {
-      console.error(error)
+      throw error
     }
   }
 }

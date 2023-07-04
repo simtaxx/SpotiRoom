@@ -8,7 +8,7 @@ export class Albums extends IAlbums {
 
       return data
     } catch (error) {
-      console.error(error)
+      throw error
     }
   }
 }

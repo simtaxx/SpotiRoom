@@ -21,7 +21,7 @@ export const Albums = () => {
     storeAlbums()
   }, [storeAlbums]) 
 
-  return !!albums.length && (
+  return !!albums?.length && (
     <section className={styles.albums}>
       <p className={styles.albums__title}>My albums</p>
         <div className={styles.albums__list}>
