@@ -6,14 +6,12 @@ const start = async () => {
 
   await loaders(app)
 
-  const port = process.env.PORT || 3000
-  app.listen(port, err => {
-    if (err) {
-      console.error(err)
-      return err
-    }
+  const port = process.env.PORT
 
+  app.listen(port, () => {
     console.log(`listening here http://localhost:${port}`)
+  }).on('error', (err) => {
+    console.log(err)
   })
 }
 

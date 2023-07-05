@@ -1,6 +1,7 @@
+import { Application } from 'express'
 import routes from '../routes'
 
-export default (app) => {
+export default (app: Application) => {
 
   app.use('/musicProviderAuth', routes.musicProviderAuth)
   app.use('/musicProviderRefreshAuth', routes.musicProviderRefreshAuth)

@@ -6,10 +6,10 @@ const musicProviderAuth = Router()
 musicProviderAuth.get('/', async (req, res) => {
   try {
     const spotifyAuthentication = new SpotifyAuthentication()
-    const { redirectionURL } = await spotifyAuthentication.generateAuthenticationURL()
+    const redirectionURL = await spotifyAuthentication.generateAuthenticationURL()
 
     res.send({ redirectionURL })
-  } catch (error) {
+  } catch (error: any) {
     const { status, message } = error.response.data.error
     res.status(status).send(message)
   }
@@ -22,8 +22,8 @@ musicProviderAuth.post('/', async (req, res) => {
     const authentication = await spotifyAuthentication.generateAccessToken(code)
 
     res.send(authentication)
-  } catch (error) {
-    const { status, message } = error.response.data.error
+  } catch (error: any) {
+    const { status, message } = error.response.data.error;
     res.status(status).send(message)
   }
 })
