@@ -1,5 +1,7 @@
+type IFetchAlbums = (accessToken: string) => Promise<unknown>
+
 class IAlbums {
-  fetchAlbums = async () => {
+  fetchAlbums: IFetchAlbums = async () => {
     throw new Error('fetchAlbums must be implemented')
   }
 }

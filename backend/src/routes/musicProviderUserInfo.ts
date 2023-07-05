@@ -10,7 +10,7 @@ musicProviderUserInfo.post('/', async (req, res) => {
     const user = await spotifyAuthentication.fetchUser(accessToken)
 
     res.send(user)
-  } catch (error) {
+  } catch (error: any) {
     const { status, message } = error.response.data.error
     res.status(status).send(message)
   }

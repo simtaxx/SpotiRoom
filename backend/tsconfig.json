@@ -8,7 +8,8 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "types": ["jest"],
+    "types": ["jest", "node"],
+    "typeRoots": ["node_modules/@types"],
     "noEmit": true,
     "isolatedModules": true,
     "esModuleInterop": true,
@@ -17,6 +18,6 @@
     "strict": true,
     "skipLibCheck": true
   },
-  "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts"],
-  "include": ["./src/**/*.tsx", "./src/**/*.ts"]
+  "exclude": ["node_modules"],
+  "include": ["./src/**/*.ts", "./tests/**/*.ts"]
 }

@@ -10,7 +10,7 @@ musicProviderRefreshAuth.post('/', async (req, res) => {
     const refreshAuthentication = await spotifyAuthentication.generateRefreshedAccessToken(refreshToken)
 
     res.send(refreshAuthentication)
-  } catch (error) {
+  } catch (error: any) {
     const { status, message } = error.response.data.error
     res.status(status).send(message)
   }

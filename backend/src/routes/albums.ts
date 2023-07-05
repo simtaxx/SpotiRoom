@@ -6,11 +6,13 @@ const albums = Router()
 albums.get('/', async (req, res) => {
   try {
     const { authorization } = req.headers
+    if (!authorization) return res.status(401).send('Authorization is required')
+
     const albumsInstance = new Albums()
     const { items } = await albumsInstance.fetchAlbums(authorization)
 
     res.send(items)
-  } catch (error) {
+  } catch (error: any) {
     const { status, message } = error.response.data.error
     res.status(status).send(message)
   }

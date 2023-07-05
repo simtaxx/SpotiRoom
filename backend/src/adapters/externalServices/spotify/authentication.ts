@@ -2,7 +2,20 @@ import { spotifyAccessToken, spotifyApi } from '../../../config/http'
 import generateRandomString from '../../../domain/utils/generateRandomString'
 import IMusicProviderAuthentication from '../contracts/IMusicProviderAuthentication'
 
-export class SpotifyAuthentication extends IMusicProviderAuthentication {
+interface IAuthenticationURLParams {
+  client_id?: string
+  redirect_uri?: string
+  scope: string
+  response_type: string
+  state: string
+}
+interface IAccessTokenURLParams {
+  grant_type: string
+  code: string
+  redirect_uri?: string
+}
+
+export class SpotifyAuthentication implements IMusicProviderAuthentication {
   fetchAppAccessToken = async () => {
     try {
       const { data } = await spotifyAccessToken.post('/token', {
@@ -21,29 +34,32 @@ export class SpotifyAuthentication extends IMusicProviderAuthentication {
     try {
       const state = generateRandomString(16)
       const scope = 'user-read-private user-read-email playlist-modify-public user-library-read'
-      const args = new URLSearchParams({
+      const authenticationURLSearchParams: IAuthenticationURLParams = {
         response_type: 'code',
         client_id: process.env.CLIENT_ID,
         scope,
         redirect_uri: process.env.REDIRECT_URI,
         state
-      });
+      }
+      const args = new URLSearchParams(authenticationURLSearchParams as any)
 
-      return { redirectionURL: `https://accounts.spotify.com/authorize?${args}` }
+      return `https://accounts.spotify.com/authorize?${args}`
     } catch (error) {
       throw error
     }
   }
 
-  generateAccessToken = async (code) => {
+  generateAccessToken = async (code: string) => {
     try {
-      const body = new URLSearchParams({
+      const accessTokenURLParams: IAccessTokenURLParams = {
         grant_type: 'authorization_code',
         code,
         redirect_uri: process.env.REDIRECT_URI,
-      });
+      }
+      const body = new URLSearchParams(accessTokenURLParams as any)
+      const buffer = new (Buffer as any).from(`${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`, 'base64')
       const headers = {
-        Authorization: `Basic ${(new Buffer.from(`${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`).toString('base64'))}`
+        Authorization: `Basic ${buffer}`
       }
       const { data } = await spotifyAccessToken.post('/token', body, { headers })
 
@@ -53,14 +69,15 @@ export class SpotifyAuthentication extends IMusicProviderAuthentication {
     }
   }
 
-  generateRefreshedAccessToken = async (refreshToken) => {
+  generateRefreshedAccessToken = async (refreshToken: string) => {
     try {
       const body = new URLSearchParams({
         grant_type: 'refresh_token',
         refresh_token: refreshToken,
-      });
+      })
+      const buffer = new (Buffer as any).from(`${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`, 'base64')
       const headers = {
-        Authorization: `Basic ${(new Buffer.from(`${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`).toString('base64'))}`
+        Authorization: `Basic ${buffer}`
       }
       const { data } = await spotifyAccessToken.post('/token', body, { headers })
 
@@ -70,7 +87,7 @@ export class SpotifyAuthentication extends IMusicProviderAuthentication {
     }
   }
 
-  fetchUser = async (accessToken) => {
+  fetchUser = async (accessToken: string) => {
     try {
       const { data } = await spotifyApi(accessToken).get('/me')
       const { id, display_name, images, product, type } = data

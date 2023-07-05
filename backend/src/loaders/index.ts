@@ -1,9 +1,10 @@
+import { Application } from 'express'
 import { getAppAccessToken } from '../config/http'
 import { accesTokenGeneratorJob } from '../cron/accessTokenJob'
 import expressLoader from './expressLoader'
 import routesLoader from './routesLoader'
 
-export default async (expressApp) => {
+export default async (expressApp: Application) => {
 
   await expressLoader(expressApp)
   routesLoader(expressApp)

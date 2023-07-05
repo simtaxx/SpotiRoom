@@ -9,7 +9,7 @@ export const spotifyAccessToken = axios.create({
   }
 })
 
-export const spotifyApi = (token) => axios.create({
+export const spotifyApi = (token: string) => axios.create({
     baseURL: 'https://api.spotify.com/v1',
     timeout: 1000,
     headers: {
