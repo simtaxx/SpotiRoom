@@ -1,5 +1,5 @@
 import loaders from './loaders'
-import express from 'express'
+import express, {ErrorRequestHandler} from 'express'
 
 const start = async () => {
   const app = express()
@@ -10,7 +10,7 @@ const start = async () => {
   app.listen(port, err => {
     if (err) {
       console.error(err)
-      return err
+      return err.
     }
 
     console.log(`listening here http://localhost:${port}`)
