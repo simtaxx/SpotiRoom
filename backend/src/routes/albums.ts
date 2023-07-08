@@ -1,10 +1,10 @@
-import { Router } from 'express'
+import { Request, Response, Router } from 'express'
 import { Albums } from '../adapters/externalServices/spotify/albums'
 
 const albums = Router()
 const albumsInstance = new Albums()
 
-albums.get('/', async (req, res) => {
+albums.get('/', async (req: Request, res: Response) => {
   try {
     const { authorization } = req.headers
     if (!authorization) return res.status(401).send('Authorization is required')

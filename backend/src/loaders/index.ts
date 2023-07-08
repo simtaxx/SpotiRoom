@@ -6,7 +6,7 @@ import routesLoader from './routesLoader'
 
 export default async (expressApp: Application) => {
 
-  await expressLoader(expressApp)
+  expressLoader(expressApp)
   routesLoader(expressApp)
   await getAppAccessToken()
   
