@@ -57,7 +57,7 @@ export class SpotifyAuthentication implements IMusicProviderAuthentication {
         redirect_uri: process.env.REDIRECT_URI,
       }
       const body = new URLSearchParams(accessTokenURLParams as any)
-      const buffer = new (Buffer as any).from(`${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`, 'base64')
+      const buffer = new (Buffer as any).from(`${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`).toString('base64')
       const headers = {
         Authorization: `Basic ${buffer}`
       }
@@ -75,7 +75,7 @@ export class SpotifyAuthentication implements IMusicProviderAuthentication {
         grant_type: 'refresh_token',
         refresh_token: refreshToken,
       })
-      const buffer = new (Buffer as any).from(`${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`, 'base64')
+      const buffer = new (Buffer as any).from(`${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`).toString('base64')
       const headers = {
         Authorization: `Basic ${buffer}`
       }

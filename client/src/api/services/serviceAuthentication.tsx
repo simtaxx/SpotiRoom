@@ -35,7 +35,7 @@ const manageAuthWindows = () => {
 
 export const authenticate = async () => {
     const { redirectionURL } = await getAuthorization()
-    window.open(redirectionURL as unknown as string,'name','width=600,height=800')
+    window.open(redirectionURL as unknown as string, 'name', 'width=600,height=800')
 }
 
 export const logout = () => {
