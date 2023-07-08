@@ -2,10 +2,10 @@ import { Router } from 'express'
 import { SpotifyAuthentication } from '../adapters/externalServices/spotify/authentication'
 
 const musicProviderAuth = Router()
-const spotifyAuthentication = new SpotifyAuthentication()
 
-musicProviderAuth.get('/', async (_req, res) => {
+musicProviderAuth.get('/', async (req, res) => {
   try {
+    const spotifyAuthentication = new SpotifyAuthentication()
     const redirectionURL = await spotifyAuthentication.generateAuthenticationURL()
 
     res.send({ redirectionURL })
@@ -18,6 +18,7 @@ musicProviderAuth.get('/', async (_req, res) => {
 musicProviderAuth.post('/', async (req, res) => {
   try {
     const { code } = req.body
+    const spotifyAuthentication = new SpotifyAuthentication()
     const authentication = await spotifyAuthentication.generateAccessToken(code)
 
     res.send(authentication)
