@@ -1,15 +1,29 @@
 import request from 'supertest'
 import nock from 'nock'
 import app from '../../../src/index'
-import { beforeEach } from 'node:test'
+import { afterEach, beforeEach } from 'node:test'
 
 describe('GET /albums', () => {
   const headers = {
     Authorization: '123',
   }
 
-  beforeEach(() => {
+  afterEach(() => {
     nock.cleanAll()
+  })
+
+  it('should return 401 because invalid authorization header', async () => {
+    nock('https://api.spotify.com/v1')
+      .get('/me/albums')
+      .reply(401, {
+        error: {
+          status: 401,
+          message: 'Invalid authorization header'
+        }
+      })
+
+    const { status } = await request(app).get('/albums').set(headers)
+    expect(status).toBe(401)
   })
 
   it('should return 200', async () => {
@@ -42,14 +56,4 @@ describe('GET /albums', () => {
     const { status } = await request(app).get('/albums')
     expect(status).toBe(401)
   })
-
-  it('should return 401 because invalid authorization header', async () => {
-    nock('https://api.spotify.com/v1')
-      .get('/me/albums')
-      .replyWithError('prout')
-
-    const { status } = await request(app).get('/albums').set(headers)
-    expect(status).toBe(401)
-  })
-  
 })
