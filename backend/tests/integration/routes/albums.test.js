@@ -1,7 +1,7 @@
 import request from 'supertest'
 import nock from 'nock'
 import app from '../../../src/index'
-import { afterEach, beforeEach } from 'node:test'
+import { afterEach } from 'node:test'
 
 describe('GET /albums', () => {
   const headers = {
