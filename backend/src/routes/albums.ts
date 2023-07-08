@@ -2,13 +2,13 @@ import { Router } from 'express'
 import { Albums } from '../adapters/externalServices/spotify/albums'
 
 const albums = Router()
-const albumsInstance = new Albums()
 
 albums.get('/', async (req, res) => {
   try {
     const { authorization } = req.headers
     if (!authorization) return res.status(401).send('Authorization is required')
 
+    const albumsInstance = new Albums()
     const { items } = await albumsInstance.fetchAlbums(authorization)
 
     res.send(items)
