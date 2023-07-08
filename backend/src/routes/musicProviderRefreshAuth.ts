@@ -11,8 +11,9 @@ musicProviderRefreshAuth.post('/', async (req, res) => {
 
     res.send(refreshAuthentication)
   } catch (error: any) {
-    const { status, message } = error.response.data.error
-    res.status(status).send(message)
+    console.log("??", error)
+    const { status, statusText } = error.response
+    res.status(status).send(statusText)
   }
 })
 

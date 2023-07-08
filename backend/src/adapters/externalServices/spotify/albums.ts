@@ -7,7 +7,7 @@ export class Albums extends IAlbums {
       const { data } = await spotifyApi(accessToken).get('/me/albums')
 
       return data
-    } catch (error) {
+    } catch (error: any) {
       throw error
     }
   }
